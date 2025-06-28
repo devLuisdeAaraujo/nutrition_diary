@@ -5,12 +5,12 @@ class Aplicativo:
     def __init__(self):
         st.title("Diário de alimentação")
 
-        # Conexão MongoDB
+       
         self.client = MongoClient("mongodb://localhost:27017/")
         self.db = self.client["nutritiondiary"]
         self.colecao = self.db["cadastre"]
 
-        # Dados fixos
+        
         self.frutas = [
             "Banana", "Maçã", "Uva", "Pera", "Laranja", "Abacaxi",
             "Morango", "Manga", "Melancia", "Mamão", "Kiwi",
@@ -78,12 +78,12 @@ class Aplicativo:
     def pagina_almoco(self):
         st.subheader("🍽️ Almoço")
         st.write("Aqui você pode registrar o que comeu no almoço.")
-        # Você pode seguir estrutura semelhante à do café
+        
 
     def pagina_janta(self):
         st.subheader("🌙 Janta")
         st.write("Aqui você pode registrar o que comeu na janta.")
-        # Também pode seguir a mesma lógica
+        
 
 if __name__ == "__main__":
     Aplicativo()

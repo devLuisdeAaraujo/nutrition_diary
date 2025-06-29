@@ -43,8 +43,6 @@ Python instalado na máquina e biblioteca Streamlit.
 
 
 
-###Criar conexão com o MongoDB:
-![image](https://github.com/user-attachments/assets/710b309e-1bc3-45b8-a666-87fd722b364e)
 
 
 ### Instalar o Streamlit:

@@ -63,7 +63,7 @@ Neste tela você conseguirá fazer o cadastro da refeição na página: Cadastra
 ```bash
 streamlit run tabela.py
 ```
-##- Como funciona:
+## -Como Funciona:
 
 
 Mostrará a tabela com as refeições cadastradas e seus carboidratos e suas proteínas de acordo com a quantidade cadastrada.

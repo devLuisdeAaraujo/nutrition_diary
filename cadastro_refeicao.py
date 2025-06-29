@@ -10,7 +10,7 @@ class Aplicativo:
         self.db = self.client["nutritiondiary"]
         self.colecao = self.db["cadastre"]
 
-        # Dados fixos
+        
         self.frutas = [
             "Banana", "Maçã", "Uva", "Pera", "Laranja", "Abacaxi",
             "Morango", "Manga", "Melancia", "Mamão", "Kiwi",
@@ -29,7 +29,6 @@ class Aplicativo:
             "Batata-doce", "Inhame", "Arroz integral (p/ café reforçado)"
         ]
 
-        
         menu = st.radio("Escolha a refeição:", ["Café da Manhã", "Almoço", "Janta"], horizontal=True)
 
         if menu == "Café da Manhã":
@@ -69,21 +68,20 @@ class Aplicativo:
                 "data": str(data),
                 "horario": str(horario),
                 "alimento": alimento_escolhido,
-                "quantidade": quantidade
+                "quantidade/g": quantidade
             }
-
             self.colecao.insert_one(dados)
             st.success("Refeição salva com sucesso!")
 
     def pagina_almoco(self):
         st.subheader("🍽️ Almoço")
         st.write("Aqui você pode registrar o que comeu no almoço.")
-        # Você pode seguir estrutura semelhante à do café
+        
 
     def pagina_janta(self):
         st.subheader("🌙 Janta")
         st.write("Aqui você pode registrar o que comeu na janta.")
-        # Também pode seguir a mesma lógica
+       
 
 if __name__ == "__main__":
     Aplicativo()

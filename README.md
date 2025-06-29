@@ -40,7 +40,10 @@ Python instalado na máquina e biblioteca Streamlit.
 ## **Estrutura dos arquivos principais:**
  - cadastro_refeicao.py -> Tela de cadastro de refeições.
  - tabela.py -> Tela com dados na tabela.
-   
+
+##Criar conexão com o MongoDB
+![image](https://github.com/user-attachments/assets/710b309e-1bc3-45b8-a666-87fd722b364e)
+
 
 ### Instalar o Streamlit:
 

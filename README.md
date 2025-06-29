@@ -1,6 +1,11 @@
-# Sistema de Diário de nutrição com Machine Learning (Python + SKlearn + MongoDB + Pandas)
+# Sistema de Diário de Nutrição com Machine Learning (Python + Scikit-learn + MongoDB + Pandas)
 
-Este projeto é uma aplicação web desenvolvida com **Python** e **SKlearn**, com objetivo de realizar **cadastro de refeições** com **manipulação de proteínas e carboidratos com Machine Learning**. Os dados são armazenados em um banco de dados **MongoDB**, com foco em fazer a manipulação do dados cadastrados e **Pandas** para a criação de DataFrame com tabelas.
+Este projeto é uma aplicação web desenvolvida com **Python**, utilizando **Streamlit** como interface, com o objetivo de cadastrar refeições e aplicar **Machine Learning** para prever e analisar dados nutricionais como **quantidade de proteínas e carboidratos**.
+
+Os dados são armazenados em um banco **MongoDB**, manipulados com **Pandas**, e o modelo de ML utiliza **Scikit-learn** com `LinearRegression`, `OneHotEncoder`, `ColumnTransformer` e `Pipeline`.
+
+---
+
 
 ---
 
@@ -10,8 +15,9 @@ Este projeto é uma aplicação web desenvolvida com **Python** e **SKlearn**, c
 - Manipulação dos dados cadastrados **MongoDB**
 - Machine Learning **SKlearn**:
 - **LinearRegression** para poder utilizar regressão linear para realizar as previsões;
-- **Preprocessing** 
-- 
+- **Preprocessing com OneHotEnconder** Ele vai fazer o pré-processamento do código e com OneHotEnconder vai transformar (refeicao/alimento) os dados em opção binária;
+- **Compose com ColumnTransformer** Aplica-se nas colunas categóricas;
+- **Pipeline** Encadear o pré-modelo de regressão.
 
 
 ---
@@ -20,10 +26,10 @@ Este projeto é uma aplicação web desenvolvida com **Python** e **SKlearn**, c
 
 - Python
 - Streamlit
-- SQLite3
-- smtplib (SMTP)
-- secrets
-- hashlib
+- MongoDB
+- SKlearn
+- Pandas
+
 
 ---
 
@@ -32,13 +38,9 @@ Este projeto é uma aplicação web desenvolvida com **Python** e **SKlearn**, c
 **Pré-requisitos:**  
 Python instalado na máquina e biblioteca Streamlit.
 ## **Estrutura dos arquivos principais:**
- - cadastre.py -> Tela de cadastro de usuários.
- - login.py -> Tela de login dos usuários
- - funcao_token.py -> Geração de código/ token de verificação.
- - token_email.py -> Envio de e-mail com o código via **SMTP**
- - funcao_email_recente.py -> Verificação do código/ token enviado
- - cadastre_user.db -> Banco de dados **SQLITE3** (gerado automaticamente ao rodar)
- - 
+ - cadastro_refeicao.py -> Tela de cadastro de refeições.
+ - tabela.py -> Tela com dados na tabela.
+   
 
 ### Instalar o Streamlit:
 
@@ -48,33 +50,32 @@ pip install streamlit
 
 ## -PASSO 1: Fazendo a aplicação web:
 ```bash
-streamlit run cadastre.py
+streamlit run cadastro_refeicao.py
 ```
-Neste tela você conseguirá fazer o cadastro na página: Cadastrando seu nome de usuário, seu e-mail o qual vai receber o código , seu cpf *Precisa ser cpf verídico*, sua senha *Senha vai ser criptografada dentro do banco de dados utilizando a biblioteca hashlib*. Após isso cadastrá-lo clicando no botão.
+Neste tela você conseguirá fazer o cadastro da refeição na página: Cadastrando horário da refeição(Café-da-manhã,Almoço,Jantar), o horário que está realizando a refeição, Tipo de alimento, o alimento e sua quantidade em Gramas(g). Após isso, enviando os dados ao banco de dados MongoDB.
 
-## -PASSO 2: Redirecionamento para verificação e-mail:
+## -PASSO 2: Vizualização dos dados com os aplicados pelo Machine Learning:
 
-Após o cadastro, entrará para a página de validação.
+
 ```bash
-streamlit run token_email.py
+streamlit run tabela.py
 ```
-Nela um código no e-mail cadastrado será enviado, e adicione esse código para verificar a veracidade.
+##- Como funciona:
 
-## -PASSO 3: Realizando login:
-Após a validação você pode fechar o web já aberto no seu terminal e reabrir usando
-```bash
-streamlit run login.py
-```
-Nele fará o login com NOME ou E-MAIL ou CPF,  já cadastrado no Banco de dados, juntamente com sua senha cadastrada.
 
-Caso errar em algo aparecerá a tela.
-Se realizar o login corretamente, aparecerá **login concluído com sucesso**.
+Mostrará a tabela com as refeições cadastradas e seus carboidratos e suas proteínas de acordo com a quantidade cadastrada.
+![image](https://github.com/user-attachments/assets/eb8d85b1-c510-47df-9916-03c4b9a34fad)
 
-## -Observações:
+Primeiramente, crio um arquivo com valores em forma de dicionário para ser percorrido de acordo com seus valores.
+![image](https://github.com/user-attachments/assets/d98fce1f-456b-46fd-8cb2-0c5ff77e413c)
 
--O envio de e-mails está configurado inicialmente para Gmail, mas pode ser adaptado para outros servidores.
--As senhas são **criptografadas** antes de serem armazenadas, aumentando a segurança do sistema.
--Caso queira testar com outro e-mail, é necessário alterar as configurações de **SMTP** no código.
+Faço a criação data- X e o target- Y, no qual no X passo um OneHotEnconder para poder transformar as opções em binário. Com o pipeline faço a pré-processamento indiciando X,y para treinar o modelo(.fit()).
+
+![image](https://github.com/user-attachments/assets/8ac41514-b882-4bfe-a325-8d7a6b96e247)
+
+Passo que de acordo com 100 gramas ele utilizará os valores que eu passei na __init__ para poder fazer a comparação e com isso fazer a multiplicação com a quantidade cadastrada no Banco de dados.
+
+Com esse projeto consigo iniciar meus estudos com Machine Learning, aprendendo sobre Regressão Linear, tipos de classificações(RBF,Polinomio,classe linearmente separada), SVM´S Kernels, Acurácias.
 
 ## -Contate-me:
 
